@@ -1,3 +1,5 @@
+require File.expand_path("../gem/dsl", __FILE__)
+
 module GemLoader
   class Gem
     attr_accessor :name, :version, :options, :requires
@@ -8,11 +10,15 @@ module GemLoader
       self.options = options || {}
     end
     
+    def gem_args
+      self.version ? [self.name, self.version] : [self.name]
+    end
+    
     def load
       if self.version
-        Kernel.send :gem, self.name, self.version
+        Kernel.send :gem, *gem_args
       else
-        Kernel.send :gem, self.name
+        Kernel.send :gem, *gem_args
       end
     end
     
@@ -26,17 +32,5 @@ module GemLoader
       end
     end
     
-    def dsl(&block)
-      Dsl.new(self, &block)
-    end
-    
-    class Dsl
-      attr_accessor :parent
-
-      def initialize(parent, &block)
-        self.parent = parent
-        instance_eval(&block) if block
-      end
-    end
   end
 end

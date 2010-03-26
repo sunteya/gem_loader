@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{gem_loader}
-  s.version = "0.0.3"
+  s.version = "0.0.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Sunteya"]
-  s.date = %q{2010-03-26}
+  s.date = %q{2010-03-27}
   s.email = %q{Sunteya@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -27,7 +27,10 @@ Gem::Specification.new do |s|
      "lib/gem_loader/base.rb",
      "lib/gem_loader/gem.rb",
      "lib/gem_loader/scope.rb",
-     "spec/lib/gem_loader_spec.rb",
+     "spec/gem_loader/base_spec.rb",
+     "spec/gem_loader/gem_spec.rb",
+     "spec/gem_loader/scope_spec.rb",
+     "spec/gem_loader_spec.rb",
      "spec/spec.opts",
      "spec/spec_helper.rb"
   ]
@@ -37,7 +40,10 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.6}
   s.summary = %q{a tiny gem's dependencies loader.}
   s.test_files = [
-    "spec/lib/gem_loader_spec.rb",
+    "spec/gem_loader/base_spec.rb",
+     "spec/gem_loader/gem_spec.rb",
+     "spec/gem_loader/scope_spec.rb",
+     "spec/gem_loader_spec.rb",
      "spec/spec_helper.rb"
   ]
 

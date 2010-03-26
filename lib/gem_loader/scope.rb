@@ -1,11 +1,18 @@
+require File.expand_path("../scope/dsl", __FILE__)
+
 module GemLoader
   class Scope
-    attr_accessor :name, :gems, :libs
+    attr_accessor :name, :depend_scopes, :gems, :libs
     
-    def initialize(name)
+    def initialize(name, depend_scopes = [])
       self.name = name
+      self.depend_scopes = depend_scopes
       self.gems = []
       self.libs = []
+    end
+    
+    def all_gems
+      [ self.depend_scopes.map(&:all_gems) + self.gems ].flatten
     end
     
     def load
@@ -29,28 +36,6 @@ module GemLoader
       self.gems.last
     end
     
-    def dsl(&block)
-      Dsl.new(self, &block)
-    end
-    
-    class Dsl
-      attr_accessor :parent
-      
-      def initialize(parent, &block)
-        self.parent = parent
-        instance_eval(&block) if block
-      end
-      
-      def gem(*args, &block)
-        options = args.pop if args.last.is_a?(Hash)
-        name, version = *args
-        
-        self.parent.gem(name, version, options).dsl(&block)
-      end
-      
-      def require(*args)
-        self.parent.libs << [ args ].flatten
-      end
-    end
+
   end
 end

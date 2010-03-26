@@ -17,20 +17,12 @@ describe GemLoader::Scope do
     @scope.require
   end
   
-  
-  describe "Dsl" do
-    before(:each) do
-      @dsl = GemLoader::Scope::Dsl.new(@scope)
-    end
+  it "should include depends scope gems" do
+    depend_scope = GemLoader::Scope.new("depend")
+    depend_scope.gems << GemLoader::Gem.new("depend_gem")
+    @scope.gems << GemLoader::Gem.new("test_gem")
+    @scope.depend_scopes << depend_scope
     
-    it "should say gem success" do
-      @dsl.gem(:foo)
-      @scope.gems.last.name.should == "foo"
-    end
-    
-    it "should say require success" do
-      @dsl.require("bar")
-      @scope.libs.last.should == [ "bar" ]
-    end
+    @scope.all_gems.should == [ depend_scope.gems + @scope.gems ].flatten
   end
 end

@@ -1,3 +1,7 @@
+require File.expand_path("../scope", __FILE__)
+require File.expand_path("../gem", __FILE__)
+require File.expand_path("../base/dsl", __FILE__)
+
 module GemLoader
   class Base
     attr_accessor :scopes
@@ -6,13 +10,13 @@ module GemLoader
       self.scopes = {}
     end
     
-    def scope(name)
+    def scope(name, depend_scopes = [])
       self.scopes ||= {}
-      self.scopes[name] ||= Scope.new(name)
+      self.scopes[name] ||= Scope.new(name, depend_scopes)
     end
     
     def setup(&block)
-      Dsl.new(self, &block)
+      self.dsl(&block)
     end
     
     def load(*args)
@@ -28,19 +32,6 @@ module GemLoader
       
       scope_names.each do |scope_name|
         self.scope(scope_name).require
-      end
-    end
-    
-    class Dsl
-      attr_accessor :parent
-      
-      def initialize(parent, &block)
-        self.parent = parent
-        instance_eval(&block) if block
-      end
-      
-      def scope(name, &block)
-        self.parent.scope(name).dsl(&block)
       end
     end
   end

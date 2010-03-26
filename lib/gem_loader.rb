@@ -1,5 +1,3 @@
-require File.expand_path("../gem_loader/scope", __FILE__)
-require File.expand_path("../gem_loader/gem", __FILE__)
 require File.expand_path("../gem_loader/base", __FILE__)
 
 
