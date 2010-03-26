@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
      "Rakefile",
      "VERSION",
      "depends.rb",
+     "gem_loader.gemspec",
      "lib/gem_loader.rb",
      "lib/gem_loader/base.rb",
      "lib/gem_loader/gem.rb",
