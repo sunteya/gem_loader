@@ -17,12 +17,13 @@ namespace :spec do
 end
 
 
-Jeweler::Tasks.new do |gem|
-  gem.name = "gem_loader"
-  gem.summary = "a tiny gem's dependencies loader."
-  gem.email = "Sunteya@gmail.com"
-  gem.homepage = "http://github.com/sunteya/gem_loader"
-  gem.authors = ["Sunteya"]
+Jeweler::Tasks.new do |spec|
+  spec.name = "gem_loader"
+  spec.summary = "a tiny gem's dependencies loader."
+  spec.email = "Sunteya@gmail.com"
+  spec.homepage = "http://github.com/sunteya/gem_loader"
+  spec.authors = ["Sunteya"]
+  GemLoader.gemspec.integrate(spec)
 end
 Jeweler::GemcutterTasks.new
 

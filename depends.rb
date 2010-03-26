@@ -4,11 +4,10 @@ require File.expand_path("../lib/gem_loader", __FILE__)
 
 GemLoader.setup do
   
-  scope :development do
-  end
+  scope :development => :test
   
   scope :test do
-    gem :rspec, ">= 1.3.0", :require => "spec"
+    gem :rspec, ">= 1.3.0", :require => nil
   end
   
   scope :rakefile => :test do

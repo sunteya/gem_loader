@@ -15,6 +15,12 @@ describe GemLoader::Gem do
       Kernel.should_receive(:require).with("foo")
     end
 
+    it "with require lib" do
+      @gem = GemLoader::Gem.new("foo", "0.1", :require => "lib")
+      Kernel.should_receive(:gem).with("foo", "0.1")
+      Kernel.stub!(:require).with("lib")
+    end
+
     it "skip require" do
       @gem = GemLoader::Gem.new("foo", "0.1", :require => nil)
       Kernel.should_receive(:gem).with("foo", "0.1")
