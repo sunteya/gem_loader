@@ -31,6 +31,7 @@ Gem::Specification.new do |s|
      "lib/gem_loader/gemspec.rb",
      "lib/gem_loader/scope.rb",
      "lib/gem_loader/scope/dsl.rb",
+     "lib/gem_loader/version.rb",
      "spec/gem_loader/base/dsl_spec.rb",
      "spec/gem_loader/base_spec.rb",
      "spec/gem_loader/gem_spec.rb",
