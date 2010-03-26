@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{gem_loader}
-  s.version = "0.0.4"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Sunteya"]
@@ -25,10 +25,17 @@ Gem::Specification.new do |s|
      "gem_loader.gemspec",
      "lib/gem_loader.rb",
      "lib/gem_loader/base.rb",
+     "lib/gem_loader/base/dsl.rb",
      "lib/gem_loader/gem.rb",
+     "lib/gem_loader/gem/dsl.rb",
+     "lib/gem_loader/gemspec.rb",
      "lib/gem_loader/scope.rb",
+     "lib/gem_loader/scope/dsl.rb",
+     "spec/gem_loader/base/dsl_spec.rb",
      "spec/gem_loader/base_spec.rb",
      "spec/gem_loader/gem_spec.rb",
+     "spec/gem_loader/gemspec_spec.rb",
+     "spec/gem_loader/scope/dsl_spec.rb",
      "spec/gem_loader/scope_spec.rb",
      "spec/gem_loader_spec.rb",
      "spec/spec.opts",
@@ -40,8 +47,11 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.6}
   s.summary = %q{a tiny gem's dependencies loader.}
   s.test_files = [
-    "spec/gem_loader/base_spec.rb",
+    "spec/gem_loader/base/dsl_spec.rb",
+     "spec/gem_loader/base_spec.rb",
      "spec/gem_loader/gem_spec.rb",
+     "spec/gem_loader/gemspec_spec.rb",
+     "spec/gem_loader/scope/dsl_spec.rb",
      "spec/gem_loader/scope_spec.rb",
      "spec/gem_loader_spec.rb",
      "spec/spec_helper.rb"
@@ -52,9 +62,12 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
+      s.add_development_dependency(%q<rspec>, [">= 1.3.0"])
     else
+      s.add_dependency(%q<rspec>, [">= 1.3.0"])
     end
   else
+    s.add_dependency(%q<rspec>, [">= 1.3.0"])
   end
 end
 
