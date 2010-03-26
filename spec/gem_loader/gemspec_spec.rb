@@ -6,6 +6,12 @@ describe GemLoader::Gemspec do
     GemLoader.stub!(:instance).and_return(@base)
   end
   
+  it "should integrate gemspec with gem_loader" do
+    spec = Gem::Specification.new
+    GemLoader.gemspec.integrate(spec)
+    spec.runtime_dependencies.first.name.should == "gem_loader"
+  end
+  
   it "should integrate to gemspec" do
     @base.setup do
       scope :runtime do
@@ -18,7 +24,7 @@ describe GemLoader::Gemspec do
     end
     
     spec = Gem::Specification.new
-    GemLoader.gemspec.integrate(spec)
+    GemLoader.gemspec.integrate(spec, false)
     spec.runtime_dependencies.each do |gem|
       gem.name.should == "run"
       gem.requirement.requirements.last.should == Gem::Requirement.parse("= 0.2")

@@ -11,7 +11,7 @@ module GemLoader
     end
     
     def gem_args
-      self.version ? [self.name, self.version] : [self.name]
+      [self.name, self.version].compact
     end
     
     def load

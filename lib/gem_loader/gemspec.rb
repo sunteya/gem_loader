@@ -7,7 +7,9 @@ module GemLoader
       self.base = base
     end
     
-    def integrate(spec)
+    def integrate(spec, depend_gem_loader = true)
+      spec.add_runtime_dependency("gem_loader", ">= #{GemLoader::VERSION::STRING}") if depend_gem_loader
+      
       base.scope(:runtime).all_gems.each do |gem|
         spec.add_runtime_dependency(*gem.gem_args)
       end

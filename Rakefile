@@ -23,7 +23,7 @@ Jeweler::Tasks.new do |spec|
   spec.email = "Sunteya@gmail.com"
   spec.homepage = "http://github.com/sunteya/gem_loader"
   spec.authors = ["Sunteya"]
-  GemLoader.gemspec.integrate(spec)
+  GemLoader.gemspec.integrate(spec, false)
 end
 Jeweler::GemcutterTasks.new
 
