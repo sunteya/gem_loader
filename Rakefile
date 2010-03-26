@@ -1,5 +1,5 @@
 require File.expand_path("../depends.rb", __FILE__)
-GemLoader.require :test, :rakefile
+GemLoader.require(:rakefile)
 
 Spec::Rake::SpecTask.new(:spec) do |spec|
   spec.libs = [ 'lib', 'spec' ]

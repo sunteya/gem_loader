@@ -16,13 +16,13 @@ module GemLoader
     end
     
     def load
-      self.gems.each do |gem|
+      self.all_gems.each do |gem|
         gem.load
       end
     end
     
     def require
-      self.gems.each do |gem|
+      self.all_gems.each do |gem|
         gem.require
       end
       
@@ -36,6 +36,5 @@ module GemLoader
       self.gems.last
     end
     
-
   end
 end

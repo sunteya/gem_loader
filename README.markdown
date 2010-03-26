@@ -1,6 +1,6 @@
 # GemLoader
 
-A tiny gem's dependencies loader.
+  A tiny gem's dependencies loader.
 
 ## Install
 
@@ -8,4 +8,58 @@ A tiny gem's dependencies loader.
 
 ## Usege
 
-	TODO
+### Manage you gem's dependencies
+
+You need to create a gem's dependencies file, such as "depends.rb" or any other .
+
+	require "rubygems"
+	gem "gem_loader", ">= 0.1.0"
+	require "gem_loader"
+
+
+	GemLoader.setup do
+	
+	  scope :runtime do
+	    gem "sinatra", "1.0"
+	  end
+
+	  scope :development do
+	    gem :rspec, ">= 1.3.0", :require => nil
+	  end
+  
+	  scope :test => [:runtime, :development]
+  
+	  scope :rakefile => [ :runtime, :development ] do
+	    gem :rake, ">= 0.8.7"
+	    gem :jeweler, ">= 1.4.0"
+    
+	    require "spec/rake/spectask"
+	  end
+	end
+
+Modify all boot file and use the scope initialize GemLoader (such as `Rakefile`, `spec_helper.rb` and so on)
+
+	require File.expand_path("../depends.rb", __FILE__)
+	GemLoader.require(:rakefile) # :rakefile can be replace any you define scopes
+
+### Integrate Gem specification
+
+now you can integrate the gem's dependencies into the gem specification.
+
+	GemLoader.gemspec.integrate(spec)
+
+It will search `runtime` and `development` scope, and be integrated into the gem specification.
+
+example for Jeweler
+
+	Jeweler::Tasks.new do |spec|
+	  spec.name = "gem_name"
+	  spec.summary = "gem_summary"
+	  spec.email = "email@host.com"
+	  spec.homepage = "http://host.com/homepage"
+	  spec.authors = ["author"]
+	  GemLoader.gemspec.integrate(spec)
+	end
+	Jeweler::GemcutterTasks.new
+
+

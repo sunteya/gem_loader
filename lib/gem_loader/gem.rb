@@ -15,11 +15,7 @@ module GemLoader
     end
     
     def load
-      if self.version
-        Kernel.send :gem, *gem_args
-      else
-        Kernel.send :gem, *gem_args
-      end
+      Kernel.send :gem, *gem_args
     end
     
     def require
