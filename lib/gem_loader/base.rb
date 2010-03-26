@@ -36,7 +36,7 @@ module GemLoader
       
       def initialize(parent, &block)
         self.parent = parent
-        instance_eval(&block)
+        instance_eval(&block) if block
       end
       
       def scope(name, &block)

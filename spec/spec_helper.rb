@@ -4,3 +4,6 @@ require "gem_loader"
 GemLoader.require :test
 
 
+Spec::Runner.configure do |config|
+
+end

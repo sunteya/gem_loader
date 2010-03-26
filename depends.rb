@@ -11,6 +11,6 @@ GemLoader.setup do
     gem :rake, ">= 0.8.7"
     gem :jeweler, ">= 1.4.0"
     
-    require 'spec/rake/spectask'
+    require "spec/rake/spectask"
   end
 end

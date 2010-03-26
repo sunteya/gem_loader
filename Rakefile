@@ -12,6 +12,7 @@ namespace :spec do
     spec.libs = [ 'lib', 'spec' ]
     spec.pattern = 'spec/**/*_spec.rb'
     spec.rcov = true
+    spec.rcov_opts << ['--exclude', 'rcov']
   end
 end
 
