@@ -35,4 +35,17 @@ module GemLoader
       end
     end
   end
+  
+  def self.instance
+    @instance ||= Base.new
+  end
+  
+  def self.method_missing(sym, *args, &block)
+    self.instance.send(sym, *args, &block)
+  end
+  
+  # don't use method_missing, rails looks like will be append require method on module
+  def self.require(*args, &block)
+    self.instance.require(*args, &block)
+  end
 end
