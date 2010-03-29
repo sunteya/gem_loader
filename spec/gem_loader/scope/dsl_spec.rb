@@ -8,8 +8,8 @@ describe GemLoader::Scope::Dsl do
   end
   
   it "should say gem success" do
-    @dsl.gem(:foo)
-    @scope.gems.last.name.should == "foo"
+    @scope.dsl { gem("foo") }
+    @scope.gem("foo").should_not be_nil
   end
   
   it "should say require success" do

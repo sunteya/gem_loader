@@ -13,11 +13,8 @@ module GemLoader
         instance_eval(&block) if block
       end
       
-      def gem(*args, &block)
-        options = args.pop if args.last.is_a?(Hash)
-        name, version = *args
-        
-        self.scope.gem(name, version, options).dsl(&block)
+      def gem(name, *args, &block)
+        self.scope.gem(name).parse_args(*args).dsl(&block)
       end
       
       def require(*args)

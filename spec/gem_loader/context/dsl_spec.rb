@@ -2,18 +2,22 @@ require "spec_helper"
 
 describe GemLoader::Context::Dsl do
   
-  before(:each) do
-    @dsl = GemLoader::Context::Dsl.new(@context)
+  
+  it "should say scope successful" do
+    @context.dsl do
+      scope :foo
+    end
+    
+    @context.scope(:foo).should_not be_nil
   end
   
-  it "should say scope success" do
-    @dsl.scope(:foo)
-    @context.scopes[:foo].should_not be_nil
+  it "should say scope with depend other scopes successful" do
+    @context.dsl do
+      scope :development => :test
+    end
+    
+    scope = @context.scope(:development)
+    scope.depend_scopes.last.should == @context.scope(:test)
   end
   
-  it "should say scope with depends" do
-    @dsl.scope(:foo => [:bar])
-    @context.scopes[:bar].should_not be_nil
-    @context.scopes[:foo].depend_scopes.should be_include @context.scopes[:bar]
-  end
 end

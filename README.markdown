@@ -34,9 +34,9 @@ You need to create a gem's dependencies file, such as "depends.rb" or any other 
 	  scope :rakefile do
 	    gem "rake", ">= 0.8.7"
 	    gem "jeweler", ">= 1.4.0"
-	    gem "rspec"
-
-	    require "spec/rake/spectask"
+	    
+	    gem "rspec", :require => "spec/rake/spectask"   # '>= 1.3.0' version shared at :test scope
+	    
 	  end
 	end
 
@@ -67,5 +67,4 @@ example for Jeweler
 
 ## TODO
 
-  * Shared version of the definition of the gem's depends file
-  * Add a rake support, used to view the dependencies
+  * Add a rake or CLI support, used to view the dependencies

@@ -1,28 +1,25 @@
 require File.expand_path("../scope", __FILE__)
+require File.expand_path("../gem_requirement", __FILE__)
 require File.expand_path("../gem", __FILE__)
 require File.expand_path("../context/dsl", __FILE__)
 
 module GemLoader
   class Context
-    attr_accessor :scopes, :gems_requirements
+    attr_accessor :scopes, :gem_requirements
     
     def initialize
       self.scopes = {}
-      self.gems_requirements = {}
+      self.gem_requirements = {}
     end
     
-    def scope(name, depend_scopes = [])
-      self.scopes[name] ||= Scope.new(self, name, depend_scopes)
+    def scope(name)
+      self.scopes[name] ||= Scope.new(self, name)
     end
     
-    def gem_requirements
-      
+    def gem_requirement(name)
+      self.gem_requirements[name] ||= GemRequirement.new(name)
     end
     
-    def add_gem_requirement(name, requirement = nil)
-      requirement ||= Gem::Requirement.default
-      (gems_requirements[name] ||= []) << requirement
-    end
     
     def load(*args)
       scope_names = [ args ].flatten

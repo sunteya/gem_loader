@@ -6,10 +6,10 @@ module GemLoader
     end
     
     class Dsl
-      attr_accessor :parent
+      attr_accessor :gem
 
-      def initialize(parent, &block)
-        self.parent = parent
+      def initialize(gem, &block)
+        self.gem = gem
         instance_eval(&block) if block
       end
     end

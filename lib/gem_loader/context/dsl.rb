@@ -10,25 +10,28 @@ module GemLoader
     end
     
     class Dsl
-      attr_accessor :base
+      attr_accessor :context
       
-      def initialize(base, &block)
-        self.base = base
+      def initialize(context, &block)
+        self.context = context
         instance_eval(&block) if block
       end
       
       def scope(arg, &block)
-        case arg
-        when Hash
+        if arg.is_a?(Hash)
           name = arg.keys.first
-          dep_names = [ arg[name] ].flatten
+          depend_scope_names = [ arg[name] ].flatten
         else
           name = arg
-          dep_names = []
+          depend_scope_names = []
         end
         
-        dep_scopes = dep_names.map{ |dep_name| self.base.scope(dep_name) }
-        self.base.scope(name, dep_scopes).dsl(&block)
+        scope = self.context.scope(name)
+        depend_scope_names.each do |name|
+          scope.add_depend_scope(self.context.scope(name))
+        end
+        
+        scope.dsl(&block)
       end
     end
   end

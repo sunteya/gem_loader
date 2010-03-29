@@ -7,7 +7,7 @@ describe GemLoader::Scope do
   end
   
   it "should require by gem and libs" do
-    @scope.gems << GemLoader::Gem.new("foo")
+    @scope.gem("foo")
     @scope.libs << [ "bar", "biz" ]
     
     Kernel.should_receive(:require).with("foo")
@@ -19,8 +19,8 @@ describe GemLoader::Scope do
   
   it "should include depends scope gems" do
     depend_scope = @context.scope("depend")
-    depend_scope.gems << GemLoader::Gem.new("depend_gem")
-    @scope.gems << GemLoader::Gem.new("test_gem")
+    depend_scope.gem("depend_gem")
+    @scope.gem("test_gem")
     @scope.depend_scopes << depend_scope
     
     @scope.all_gems.should == [ depend_scope.gems + @scope.gems ].flatten

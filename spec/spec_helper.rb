@@ -2,6 +2,7 @@ require File.expand_path("../../depends.rb", __FILE__)
 require "gem_loader"
 
 GemLoader.require(:test)
+GemLoader.require(:runtime, :development)
 
 
 Spec::Runner.configure do |config|
