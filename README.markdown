@@ -13,7 +13,7 @@
 You need to create a gem's dependencies file, such as "depends.rb" or any other .
 
 	require "rubygems"
-	gem "gem_loader", ">= 0.1.0"
+	gem "gem_loader", ">= 0.2.0"
 	require "gem_loader"
 
 
@@ -30,13 +30,12 @@ You need to create a gem's dependencies file, such as "depends.rb" or any other 
 	  end
 	
 	  scope :development => [ :optional, :test ]
-  
+	  
 	  scope :rakefile do
 	    gem "rake", ">= 0.8.7"
 	    gem "jeweler", ">= 1.4.0"
 	    
 	    gem "rspec", :require => "spec/rake/spectask"   # '>= 1.3.0' version shared at :test scope
-	    
 	  end
 	end
 
@@ -66,5 +65,6 @@ example for Jeweler
 	Jeweler::GemcutterTasks.new
 
 ## TODO
-
+  
+  * Support optional gem depends and require
   * Add a rake or CLI support, used to view the dependencies
