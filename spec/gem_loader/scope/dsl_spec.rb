@@ -3,7 +3,7 @@ require "spec_helper"
 describe GemLoader::Scope::Dsl do
   
   before(:each) do
-    @scope = GemLoader::Scope.new("test")
+    @scope = @context.scope(:test)
     @dsl = GemLoader::Scope::Dsl.new(@scope)
   end
   

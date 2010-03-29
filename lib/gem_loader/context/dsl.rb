@@ -1,15 +1,19 @@
 module GemLoader
-  class Base
+  class Context
+    
+    def setup(&block)
+      self.dsl(&block)
+    end
     
     def dsl(&block)
       Dsl.new(self, &block)
     end
     
     class Dsl
-      attr_accessor :parent
+      attr_accessor :base
       
-      def initialize(parent, &block)
-        self.parent = parent
+      def initialize(base, &block)
+        self.base = base
         instance_eval(&block) if block
       end
       
@@ -23,8 +27,8 @@ module GemLoader
           dep_names = []
         end
         
-        dep_scopes = dep_names.map{ |dep_name| self.parent.scope(dep_name) }
-        self.parent.scope(name, dep_scopes).dsl(&block)
+        dep_scopes = dep_names.map{ |dep_name| self.base.scope(dep_name) }
+        self.base.scope(name, dep_scopes).dsl(&block)
       end
     end
   end

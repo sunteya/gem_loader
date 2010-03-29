@@ -3,7 +3,7 @@ require "spec_helper"
 describe GemLoader::Scope do
   
   before(:each) do
-    @scope = GemLoader::Scope.new("test")
+    @scope = @context.scope(:test)
   end
   
   it "should require by gem and libs" do
@@ -18,7 +18,7 @@ describe GemLoader::Scope do
   end
   
   it "should include depends scope gems" do
-    depend_scope = GemLoader::Scope.new("depend")
+    depend_scope = @context.scope("depend")
     depend_scope.gems << GemLoader::Gem.new("depend_gem")
     @scope.gems << GemLoader::Gem.new("test_gem")
     @scope.depend_scopes << depend_scope

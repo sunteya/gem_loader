@@ -6,10 +6,10 @@ module GemLoader
     end
     
     class Dsl
-      attr_accessor :parent
+      attr_accessor :scope
       
-      def initialize(parent, &block)
-        self.parent = parent
+      def initialize(scope, &block)
+        self.scope = scope
         instance_eval(&block) if block
       end
       
@@ -17,11 +17,11 @@ module GemLoader
         options = args.pop if args.last.is_a?(Hash)
         name, version = *args
         
-        self.parent.gem(name, version, options).dsl(&block)
+        self.scope.gem(name, version, options).dsl(&block)
       end
       
       def require(*args)
-        self.parent.libs << [ args ].flatten
+        self.scope.libs << [ args ].flatten
       end
     end
   end

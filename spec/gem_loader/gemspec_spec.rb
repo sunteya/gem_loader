@@ -1,10 +1,6 @@
 require "spec_helper"
 
 describe GemLoader::Gemspec do
-  before(:each) do
-    @base = GemLoader::Base.new
-    GemLoader.stub!(:instance).and_return(@base)
-  end
   
   it "should integrate gemspec with gem_loader" do
     spec = Gem::Specification.new
@@ -13,7 +9,7 @@ describe GemLoader::Gemspec do
   end
   
   it "should integrate to gemspec" do
-    @base.setup do
+    @context.setup do
       scope :runtime do
         gem "run", "= 0.2"
       end

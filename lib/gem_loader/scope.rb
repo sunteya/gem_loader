@@ -2,9 +2,10 @@ require File.expand_path("../scope/dsl", __FILE__)
 
 module GemLoader
   class Scope
-    attr_accessor :name, :depend_scopes, :gems, :libs
+    attr_accessor :base, :name, :depend_scopes, :gems, :libs
     
-    def initialize(name, depend_scopes = [])
+    def initialize(base, name, depend_scopes = [])
+      self.base = base
       self.name = name
       self.depend_scopes = depend_scopes
       self.gems = []

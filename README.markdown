@@ -23,17 +23,19 @@ You need to create a gem's dependencies file, such as "depends.rb" or any other 
 	    gem "sinatra", "1.0"
 	  end
 
-	  scope :development do
+	  scope :optional
+	  
+	  scope :test do
 	    gem "rspec", ">= 1.3.0", :require => nil
 	  end
-  
-	  scope :test => [:runtime, :development]
+	
+	  scope :development => [ :optional, :test ]
   
 	  scope :rakefile do
 	    gem "rake", ">= 0.8.7"
 	    gem "jeweler", ">= 1.4.0"
 	    gem "rspec"
-    
+
 	    require "spec/rake/spectask"
 	  end
 	end
