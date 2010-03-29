@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{gem_loader}
-  s.version = "0.1.4"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Sunteya"]
-  s.date = %q{2010-03-28}
+  s.date = %q{2010-03-29}
   s.email = %q{Sunteya@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -24,16 +24,18 @@ Gem::Specification.new do |s|
      "depends.rb",
      "gem_loader.gemspec",
      "lib/gem_loader.rb",
-     "lib/gem_loader/base.rb",
-     "lib/gem_loader/base/dsl.rb",
+     "lib/gem_loader/context.rb",
+     "lib/gem_loader/context/dsl.rb",
      "lib/gem_loader/gem.rb",
      "lib/gem_loader/gem/dsl.rb",
+     "lib/gem_loader/gem_requirement.rb",
      "lib/gem_loader/gemspec.rb",
      "lib/gem_loader/scope.rb",
      "lib/gem_loader/scope/dsl.rb",
      "lib/gem_loader/version.rb",
-     "spec/gem_loader/base/dsl_spec.rb",
-     "spec/gem_loader/base_spec.rb",
+     "spec/gem_loader/context/dsl_spec.rb",
+     "spec/gem_loader/context_spec.rb",
+     "spec/gem_loader/gem_requirement.rb",
      "spec/gem_loader/gem_spec.rb",
      "spec/gem_loader/gemspec_spec.rb",
      "spec/gem_loader/scope/dsl_spec.rb",
@@ -48,8 +50,9 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.6}
   s.summary = %q{a tiny gem's dependencies loader.}
   s.test_files = [
-    "spec/gem_loader/base/dsl_spec.rb",
-     "spec/gem_loader/base_spec.rb",
+    "spec/gem_loader/context/dsl_spec.rb",
+     "spec/gem_loader/context_spec.rb",
+     "spec/gem_loader/gem_requirement.rb",
      "spec/gem_loader/gem_spec.rb",
      "spec/gem_loader/gemspec_spec.rb",
      "spec/gem_loader/scope/dsl_spec.rb",
